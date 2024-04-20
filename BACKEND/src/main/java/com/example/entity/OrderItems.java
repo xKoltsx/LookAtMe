@@ -7,27 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user")
+@Table(name = "order_items")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class OrderItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name = "id_products")
+    private Products product;
 
     @Column
-    private String password;
-
-    @Column(unique = true)
-    private String email;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role;
+    private Short quantity;
 
 }
