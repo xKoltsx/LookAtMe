@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Products {
+public class Products implements Identifiable,Archivable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,5 +28,8 @@ public class Products {
 
     @Column
     private String description;
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean archived;
 
 }

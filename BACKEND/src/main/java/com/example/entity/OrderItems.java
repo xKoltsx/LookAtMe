@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItems {
+public class OrderItems implements Identifiable,Archivable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,4 +24,6 @@ public class OrderItems {
     @Column
     private Short quantity;
 
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean archived;
 }

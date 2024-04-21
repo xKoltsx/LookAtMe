@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Auditable;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Orders {
+public class Orders implements Identifiable, Archivable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -37,4 +39,6 @@ public class Orders {
     @Column
     private LocalDateTime createdAt;
 
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean archived;
 }

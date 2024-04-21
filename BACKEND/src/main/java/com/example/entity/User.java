@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Identifiable,Archivable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,4 +30,6 @@ public class User {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean archived;
 }

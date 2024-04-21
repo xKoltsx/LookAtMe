@@ -1,20 +1,11 @@
 package com.example.dao;
 
 import com.example.entity.User;
+import com.example.repository.PrimaryRepository;
 
-import java.util.List;
-
-public interface UserDAO {
-    //Create
-    void add(User user);
-
-    //Read
-    List<User> getAll();
-    User getById(int id);
-
-    //Update
-    void update(User user);
-
-    //Delete
-    void delete(User user);
+public class UserDAO extends AbstractDao<User>{
+    @Override
+    protected PrimaryRepository<Integer, User> getRepository() {
+        return null;
+    }
 }
