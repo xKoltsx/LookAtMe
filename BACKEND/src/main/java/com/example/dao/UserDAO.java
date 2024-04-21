@@ -8,4 +8,5 @@ public class UserDAO extends AbstractDao<User>{
     protected PrimaryRepository<Integer, User> getRepository() {
         return null;
     }
+
 }
