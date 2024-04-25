@@ -24,21 +24,21 @@ public class ProductsDAO {
     }
 
     //Find
-    public Optional<Products> findProductById(Integer id) {
+    public Optional<Products> findById(Integer id) {
         return productsRepository.findById(id);
     }
 
-    public List<Products> findAllProducts() {
+    public List<Products> findAll() {
         return (List<Products>) productsRepository.findAll();
     }
 
     //Update
-    public Products updateProduct(Products products) {
+    public Products update(Products products) {
         return productsRepository.save(products);
     }
 
     //Delete
-    public void deleteProduct(Integer id) {
+    public void delete(Integer id) {
         productsRepository.deleteById(id);
     }
 }

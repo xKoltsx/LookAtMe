@@ -26,12 +26,12 @@ public class UserService {
     }
 
     //Find
-    public Optional<User> findUserByid(Integer id){
-        return userDAO.findUserById(id);
+    public Optional<User> findByid(Integer id){
+        return userDAO.findById(id);
     }
 
     public List<User> findAllUsers(){
-        return userDAO.findAllUsers();
+        return userDAO.findAll();
     }
 
     //Update
@@ -41,6 +41,6 @@ public class UserService {
 
     //Delete
     public void deleteUser(Integer id){
-        userDAO.deleteUserById(id);
+        userDAO.delete(id);
     }
 }

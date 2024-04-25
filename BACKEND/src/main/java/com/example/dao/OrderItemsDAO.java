@@ -21,16 +21,16 @@ public class OrderItemsDAO {
         return orderItemsRepository.save(orderItems);
     }
     //Find
-    public Optional<OrderItems> findOrderItemsById(Integer id) {
+    public Optional<OrderItems> findById(Integer id) {
         return orderItemsRepository.findById(id);
     }
 
-    public List<OrderItems> findAllOrderItem() {
+    public List<OrderItems> findAll() {
         return (List<OrderItems>) orderItemsRepository.findAll();
     }
 
     //Delete
-    public void deleteOrderItemById(Integer id) {
+    public void delete(Integer id) {
         orderItemsRepository.deleteById(id);
     }
 }

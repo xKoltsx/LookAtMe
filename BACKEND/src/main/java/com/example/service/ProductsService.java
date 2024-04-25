@@ -29,20 +29,20 @@ public class ProductsService {
 
     //Find
     public Optional<Products> findById(Integer id) {
-        return productsDAO.findProductById(id);
+        return productsDAO.findById(id);
     }
 
     public List<Products> findAll() {
-        return  productsDAO.findAllProducts();
+        return  productsDAO.findAll();
     }
 
     //Update
     public Products update(Products products) {
-        return productsDAO.updateProduct(products);
+        return productsDAO.update(products);
     }
 
     //Delete
     public void delete(Integer id) {
-        productsDAO.deleteProduct(id);
+        productsDAO.delete(id);
     }
 }

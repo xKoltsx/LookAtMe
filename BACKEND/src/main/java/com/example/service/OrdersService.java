@@ -27,21 +27,21 @@ public class OrdersService {
 
     //Find
     public Optional<Orders> findOrdersById(Integer id) {
-        return ordersDAO.findOrdersById(id);
+        return ordersDAO.findById(id);
     }
 
     public List<Orders> findAllOrders() {
-        return  (List<Orders>) ordersDAO.findAllOrders();
+        return  (List<Orders>) ordersDAO.findAll();
     }
 
     //Update
-    public Orders updateOrders(Orders orders) {
+    public Orders update(Orders orders) {
         return ordersDAO.save(orders);
     }
 
     //Delete
-    public void deleteOrders(Integer id) {
-        ordersDAO.deleteOrdersById(id);
+    public void delete(Integer id) {
+        ordersDAO.delete(id);
     }
 
 }

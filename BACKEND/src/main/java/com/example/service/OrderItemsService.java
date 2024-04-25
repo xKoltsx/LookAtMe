@@ -28,11 +28,11 @@ public class OrderItemsService {
 
     //Find
     public Optional<OrderItems> findOrderItemsByOrderById(Integer id) {
-        return orderItemsDAO.findOrderItemsById(id);
+        return orderItemsDAO.findById(id);
     }
 
-    public List<OrderItems> findOrderItemsAll() {
-        return orderItemsDAO.findAllOrderItem();
+    public List<OrderItems> findAll() {
+        return orderItemsDAO.findAll();
     }
 
     //Update
@@ -41,7 +41,7 @@ public class OrderItemsService {
     }
 
     //Delete
-    public void deleteOrderItem(Integer id) {
-        orderItemsDAO.deleteOrderItemById(id);
+    public void delete(Integer id) {
+        orderItemsDAO.delete(id);
     }
 }

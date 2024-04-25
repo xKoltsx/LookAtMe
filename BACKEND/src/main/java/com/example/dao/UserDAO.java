@@ -21,16 +21,16 @@ public class UserDAO {
         return userRepository.save(user);
     }
     //Find
-    public Optional<User> findUserById(Integer id) {
+    public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
     }
 
-    public List<User> findAllUsers() {
+    public List<User> findAll() {
         return (List<User>) userRepository.findAll();
     }
 
     //Delete
-    public void deleteUserById(Integer id) {
+    public void delete(Integer id) {
         userRepository.deleteById(id);
     }
 }
