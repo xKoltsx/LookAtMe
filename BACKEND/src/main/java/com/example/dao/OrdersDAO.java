@@ -1,21 +1,37 @@
 package com.example.dao;
 
 import com.example.entity.Orders;
+import com.example.repository.OrdersRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface OrdersDAO {
+@Component
+public class OrdersDAO {
 
-    //Create
-    void add(Orders orders);
+    private final OrdersRepository ordersRepository;
 
-    //Read
-    List<Orders> getAll();
-    Orders getById();
+    public OrdersDAO(OrdersRepository ordersRepository) {
+        this.ordersRepository = ordersRepository;
+    }
 
-    //Update
-    void update(Orders orders);
+    //Save
+    public Orders save(Orders orders) {
+        return ordersRepository.save(orders);
+    }
+    //Find
+    public Optional<Orders> findById(Integer id) {
+        return ordersRepository.findById(id);
+    }
+
+    public List<Orders> findAll() {
+        return (List<Orders>) ordersRepository.findAll();
+    }
 
     //Delete
-    void delete(Orders orders);
+    public void delete(Integer id) {
+        ordersRepository.deleteById(id);
+    }
+
 }

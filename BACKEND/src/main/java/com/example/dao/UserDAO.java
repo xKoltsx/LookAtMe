@@ -1,20 +1,36 @@
 package com.example.dao;
 
 import com.example.entity.User;
+import com.example.repository.UserRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserDAO {
-    //Create
-    void add(User user);
+@Component
+public class UserDAO {
 
-    //Read
-    List<User> getAll();
-    User getById(int id);
+    private final UserRepository userRepository;
 
-    //Update
-    void update(User user);
+    public UserDAO(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    //Save
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+    //Find
+    public Optional<User> findById(Integer id) {
+        return userRepository.findById(id);
+    }
+
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
+    }
 
     //Delete
-    void delete(User user);
+    public void delete(Integer id) {
+        userRepository.deleteById(id);
+    }
 }

@@ -1,21 +1,44 @@
 package com.example.dao;
 
 import com.example.entity.Products;
+import com.example.repository.ProductsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface ProductsDAO {
+@Component
+public class ProductsDAO {
+
+    private final ProductsRepository productsRepository;
+
+    @Autowired
+    public ProductsDAO(ProductsRepository productsRepository) {
+        this.productsRepository = productsRepository;
+    }
 
     //Create
-    void add(Products products);
+    public Products createProduct(Products products) {
+        return productsRepository.save(products);
+    }
 
-    //Read
-    List<Products> getAll();
-    Products getById(int id);
+    //Find
+    public Optional<Products> findById(Integer id) {
+        return productsRepository.findById(id);
+    }
+
+    public List<Products> findAll() {
+        return (List<Products>) productsRepository.findAll();
+    }
 
     //Update
-    void update(Products products);
+    public Products update(Products products) {
+        return productsRepository.save(products);
+    }
 
     //Delete
-    void delete(Products products);
+    public void delete(Integer id) {
+        productsRepository.deleteById(id);
+    }
 }
