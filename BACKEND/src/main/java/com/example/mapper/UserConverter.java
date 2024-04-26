@@ -4,9 +4,8 @@ import com.example.dto.user.UserRequest;
 import com.example.dto.user.UserResponse;
 import com.example.entity.User;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class UserConverter extends BaseConverter<User, UserRequest, UserResponse>{
 
@@ -33,5 +32,4 @@ public class UserConverter extends BaseConverter<User, UserRequest, UserResponse
     public List<UserResponse> entityToResponse(List<User> entity) {
         return entity.stream().map(this::entityToResponse).toList();
     }
-
 }

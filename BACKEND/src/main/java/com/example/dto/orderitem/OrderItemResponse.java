@@ -9,5 +9,4 @@ public class OrderItemResponse {
     private Integer id;
     private ProductResponse product;
     private Short quantity;
-
 }

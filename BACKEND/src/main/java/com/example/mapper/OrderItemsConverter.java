@@ -2,12 +2,10 @@ package com.example.mapper;
 
 import com.example.dto.orderitem.OrderItemRequest;
 import com.example.dto.orderitem.OrderItemResponse;
-import com.example.dto.product.ProductResponse;
 import com.example.entity.OrderItems;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderItemsConverter extends BaseConverter<OrderItems, OrderItemRequest, OrderItemResponse>{
@@ -31,5 +29,4 @@ public class OrderItemsConverter extends BaseConverter<OrderItems, OrderItemRequ
     public List<OrderItemResponse> entityToResponse(List<OrderItems> entity){
         return entity.stream().map(this::entityToResponse).toList();
     }
-
 }

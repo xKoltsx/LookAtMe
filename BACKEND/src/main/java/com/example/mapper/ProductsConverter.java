@@ -5,7 +5,7 @@ import com.example.dto.product.ProductResponse;
 import com.example.entity.Products;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class ProductsConverter extends BaseConverter<Products, ProductRequest, ProductResponse>{
 
@@ -32,5 +32,4 @@ public class ProductsConverter extends BaseConverter<Products, ProductRequest, P
     public List<ProductResponse> entityToResponse(List<Products> entity){
         return entity.stream().map(this::entityToResponse).toList();
     }
-
 }
