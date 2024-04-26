@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.dto.orderitem.OrderItemRequest;
 import com.example.dto.orderitem.OrderItemResponse;
+import com.example.dto.product.ProductResponse;
 import com.example.entity.OrderItems;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ public class OrderItemsConverter extends BaseConverter<OrderItems, OrderItemRequ
     @Override
     public OrderItems requestToEntity(OrderItemRequest request){
         OrderItems entity = new OrderItems();
-        entity.setProduct(request.getProduct());
         entity.setQuantity(request.getQuantity());
         return entity;
     }
@@ -23,7 +23,6 @@ public class OrderItemsConverter extends BaseConverter<OrderItems, OrderItemRequ
     public OrderItemResponse entityToResponse(OrderItems entity){
         OrderItemResponse response = new OrderItemResponse();
         response.setId(entity.getId());
-        response.setProduct(entity.getProduct());
         response.setQuantity(entity.getQuantity());
         return response;
     }
@@ -33,19 +32,4 @@ public class OrderItemsConverter extends BaseConverter<OrderItems, OrderItemRequ
         return entity.stream().map(this::entityToResponse).toList();
     }
 
-    @Override
-    public OrderItemResponse entityToResponse(Optional<OrderItems> optionalOrderItems){
-        if (optionalOrderItems.isPresent())
-        {
-            OrderItems entity = optionalOrderItems.get();
-            OrderItemResponse response = new OrderItemResponse();
-            response.setId(entity.getId());
-            response.setProduct(entity.getProduct());
-            response.setQuantity(entity.getQuantity());
-            return response;
-        }
-        else{
-            return null;
-        }
-    }
 }

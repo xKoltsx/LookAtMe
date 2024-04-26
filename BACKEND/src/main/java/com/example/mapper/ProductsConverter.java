@@ -14,6 +14,7 @@ public class ProductsConverter extends BaseConverter<Products, ProductRequest, P
         Products entity = new Products();
         entity.setName(request.getName());
         entity.setPrice(request.getPrice());
+        entity.setDescription(request.getDescription());
         return entity;
     }
 
@@ -31,22 +32,5 @@ public class ProductsConverter extends BaseConverter<Products, ProductRequest, P
     public List<ProductResponse> entityToResponse(List<Products> entity){
         return entity.stream().map(this::entityToResponse).toList();
     }
-
-    @Override
-    public ProductResponse entityToResponse(Optional<Products> optionalProducts){
-        if(optionalProducts.isPresent()){
-            Products entity = optionalProducts.get();
-            ProductResponse response = new ProductResponse();
-            response.setId(entity.getId());
-            response.setName(entity.getName());
-            response.setPrice(entity.getPrice().toString());
-            response.setDescription(entity.getDescription());
-            return response;
-        }
-        else {
-            return null;
-        }
-    }
-
 
 }

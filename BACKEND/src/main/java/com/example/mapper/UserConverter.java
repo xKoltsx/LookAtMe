@@ -15,7 +15,7 @@ public class UserConverter extends BaseConverter<User, UserRequest, UserResponse
         User entity = new User();
         entity.setUsername(request.getUsername());
         entity.setPassword(request.getPassword());
-        entity.setRole(request.getRole());
+        entity.setEmail(request.getEmail());
         return entity;
     }
 
@@ -32,20 +32,6 @@ public class UserConverter extends BaseConverter<User, UserRequest, UserResponse
     @Override
     public List<UserResponse> entityToResponse(List<User> entity) {
         return entity.stream().map(this::entityToResponse).toList();
-    }
-
-    @Override
-    public UserResponse entityToResponse(Optional<User> optionalUser) {
-        if (optionalUser.isPresent()) {
-            User entity = optionalUser.get();
-            UserResponse response = new UserResponse();
-            response.setId(entity.getId());
-            response.setUsername(entity.getUsername());
-            response.setRole(entity.getRole());
-            return response;
-        } else {
-            return null;
-        }
     }
 
 }

@@ -8,5 +8,4 @@ public abstract class BaseConverter<Entity,Request,Response> {
     public abstract Response entityToResponse(Entity entity);
     public abstract List<Response> entityToResponse(List<Entity> entity);
 
-    public abstract Response entityToResponse(Optional<Entity> byId);
 }
