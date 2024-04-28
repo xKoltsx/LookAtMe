@@ -13,7 +13,9 @@ public class OrdersConverter extends BaseConverter<Orders, OrderRequest, OrderRe
     @Override
     public Orders requestToEntity(OrderRequest request){
         Orders entity = new Orders();
+        entity.setTotal_amount(request.getTotal_amount());
         entity.setCreatedAt(request.getCreatedAt());
+        entity.setStatus("ok");
         return entity;
     }
 
@@ -22,7 +24,6 @@ public class OrdersConverter extends BaseConverter<Orders, OrderRequest, OrderRe
         OrderResponse response = new OrderResponse();
         response.setId(entity.getId());
         response.setTotal_amount(entity.getTotal_amount());
-        response.setStatus(entity.getStatus());
         response.setCreatedAt(entity.getCreatedAt());
         return response;
     }

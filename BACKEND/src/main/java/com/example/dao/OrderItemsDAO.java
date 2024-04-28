@@ -20,6 +20,11 @@ public class OrderItemsDAO {
     public OrderItems save(OrderItems orderItems) {
         return orderItemsRepository.save(orderItems);
     }
+
+    public List<OrderItems> saveAll(List<OrderItems> orderItemsList) {
+        return (List<OrderItems>) orderItemsRepository.saveAll(orderItemsList);
+    }
+
     //Find
     public Optional<OrderItems> findById(Integer id) {
         return orderItemsRepository.findById(id);

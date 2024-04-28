@@ -26,6 +26,10 @@ public class OrderItemsService {
         return orderItemsDAO.save(orderItems);
     }
 
+    public List<OrderItems> createOrderItems(List<OrderItems> orderItemsList) {
+        return orderItemsDAO.saveAll(orderItemsList);
+    }
+
     //Find
     public Optional<OrderItems> findOrderItemsByOrderById(Integer id) {
         return orderItemsDAO.findById(id);

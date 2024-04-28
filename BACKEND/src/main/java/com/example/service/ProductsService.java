@@ -3,12 +3,13 @@ package com.example.service;
 import com.example.dao.ProductsDAO;
 import com.example.entity.Products;
 
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -28,8 +29,9 @@ public class ProductsService {
     }
 
     //Find
-    public Optional<Products> findById(Integer id) {
-        return productsDAO.findById(id);
+
+    public Products findById(Integer id){
+        return productsDAO.findById(id).get();
     }
 
     public List<Products> findAll() {
