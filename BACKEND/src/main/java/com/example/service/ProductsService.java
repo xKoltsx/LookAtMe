@@ -4,6 +4,7 @@ import com.example.dao.ProductsDAO;
 import com.example.entity.Products;
 
 
+import com.example.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

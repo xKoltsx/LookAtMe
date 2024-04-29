@@ -26,8 +26,8 @@ public class OrdersService {
     }
 
     //Find
-    public Optional<Orders> findOrdersById(Integer id) {
-        return ordersDAO.findById(id);
+    public Orders findOrdersById(Integer id) {
+        return ordersDAO.findById(id).get();
     }
 
     public List<Orders> findAllOrders() {

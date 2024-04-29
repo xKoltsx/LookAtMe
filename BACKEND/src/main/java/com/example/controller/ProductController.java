@@ -2,7 +2,10 @@ package com.example.controller;
 
 import com.example.dto.product.ProductRequest;
 import com.example.dto.product.ProductResponse;
+import com.example.dto.user.UserRequest;
+import com.example.dto.user.UserResponse;
 import com.example.entity.Products;
+import com.example.entity.User;
 import com.example.mapper.ProductsConverter;
 import com.example.service.ProductsService;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +32,8 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping
-    public ResponseEntity<ProductResponse> update(@PathVariable Integer id, @RequestBody ProductRequest productRequest){
+    @PutMapping("/{id}")
+        public ResponseEntity<ProductResponse> update(@PathVariable Integer id, @RequestBody ProductRequest productRequest){
         Products entity = productsService.findById(id);
         if (entity == null){
             return ResponseEntity.notFound().build();
@@ -43,7 +46,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<ProductResponse>> get() {
+    public ResponseEntity<Iterable<ProductResponse>> getAll() {
         return ResponseEntity.ok(productsConverter.entityToResponse(productsService.findAll()));
     }
 

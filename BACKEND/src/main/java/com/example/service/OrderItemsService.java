@@ -31,8 +31,8 @@ public class OrderItemsService {
     }
 
     //Find
-    public Optional<OrderItems> findOrderItemsByOrderById(Integer id) {
-        return orderItemsDAO.findById(id);
+    public OrderItems findOrderItemsByOrderById(Integer id) {
+        return orderItemsDAO.findById(id).get();
     }
 
     public List<OrderItems> findAll() {

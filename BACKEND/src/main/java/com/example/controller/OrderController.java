@@ -3,8 +3,12 @@ package com.example.controller;
 import com.example.dto.order.OrderRequest;
 import com.example.dto.order.OrderResponse;
 import com.example.dto.orderitem.OrderItemRequest;
+import com.example.dto.orderitem.OrderItemResponse;
+import com.example.dto.product.ProductRequest;
+import com.example.dto.product.ProductResponse;
 import com.example.entity.OrderItems;
 import com.example.entity.Orders;
+import com.example.entity.Products;
 import com.example.mapper.OrderItemsConverter;
 import com.example.mapper.OrdersConverter;
 import com.example.service.OrderItemsService;
@@ -46,17 +50,43 @@ public class OrderController {
         for (OrderItemRequest orderItemRequest : orderItemRequests) {
             OrderItems orderItem = orderItemsConverter.requestToEntity(orderItemRequest);
             orderItem.setProduct(productsService.findById(orderItemRequest.getProductId()));
+            orderItem = orderItemsService.createOrderItem(orderItem);
             orderItemsList.add(orderItem);
         }
 
         entity.setOrderItems(orderItemsList);
         entity = ordersService.createOrders(entity);
+
+        // Convert List<OrderItems> to List<OrderItemResponse>
+        List<OrderItemResponse> orderItemResponses = orderItemsList.stream()
+                .map(orderItemsConverter::entityToResponse)
+                .toList();
+
         OrderResponse response = ordersConverter.entityToResponse(entity);
+        response.setOrderItems(orderItemResponses);
+
         return ResponseEntity.ok(response);
     }
 
+
+    //@PutMapping
+    //public ResponseEntity<OrderResponse> update(@PathVariable Integer id, @RequestBody OrderRequest orderRequest){
+    //    Orders entity = ordersService.findOrdersById(id);
+    //    if (entity == null){
+   //         return ResponseEntity.notFound().build();
+    //    }
+   //     Orders updateEntity = ordersConverter.requestToEntity(orderRequest);
+   //     updateEntity.setId(entity.getId());
+   // }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
+        Orders entity = ordersService.findOrdersById(id);
+        List<OrderItems> orderItemsList = entity.getOrderItems();
+        for(OrderItems orderItems : orderItemsList){
+            OrderItems temp = orderItemsService.findOrderItemsByOrderById(orderItems.getId());
+            orderItemsService.delete(temp.getId());
+        }
         ordersService.delete(id);
         return ResponseEntity.ok().build();
     }

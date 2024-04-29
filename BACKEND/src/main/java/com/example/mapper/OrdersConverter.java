@@ -23,6 +23,7 @@ public class OrdersConverter extends BaseConverter<Orders, OrderRequest, OrderRe
     public OrderResponse entityToResponse(Orders entity){
         OrderResponse response = new OrderResponse();
         response.setId(entity.getId());
+        response.setStatus(entity.getStatus());
         response.setTotal_amount(entity.getTotal_amount());
         response.setCreatedAt(entity.getCreatedAt());
         return response;
