@@ -8,14 +8,20 @@ import com.example.entity.User;
 
 import com.example.mapper.UserConverter;
 import com.example.service.UserService;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController{
 
     private final UserService userService;
@@ -59,4 +65,9 @@ public class UserController{
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
+
+
+
+
+
 }

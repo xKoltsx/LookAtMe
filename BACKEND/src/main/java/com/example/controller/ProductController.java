@@ -5,13 +5,20 @@ import com.example.dto.product.ProductResponse;
 import com.example.entity.Products;
 import com.example.mapper.ProductsConverter;
 import com.example.service.ProductsService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/product")
 
+@CrossOrigin
 public class ProductController {
     public final ProductsService productsService;
     public final ProductsConverter productsConverter;
@@ -29,7 +36,7 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> update(@PathVariable Integer id, @RequestBody ProductRequest productRequest){
         Products entity = productsService.findById(id);
         if (entity == null){
@@ -52,4 +59,6 @@ public class ProductController {
         productsService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+
 }

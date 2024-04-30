@@ -23,7 +23,7 @@ public class ProductsConverter extends BaseConverter<Products, ProductRequest, P
          ProductResponse response = new ProductResponse();
          response.setId(entity.getId());
          response.setName(entity.getName());
-         response.setPrice(entity.getPrice().toString());
+         response.setPrice(entity.getPrice());
          response.setDescription(entity.getDescription());
          return response;
     }

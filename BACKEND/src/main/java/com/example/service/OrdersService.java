@@ -21,16 +21,16 @@ public class OrdersService {
 
     //Create
     @Transactional
-    public Orders createOrders(Orders orders) {
+    public Orders create(Orders orders) {
         return ordersDAO.save(orders);
     }
 
     //Find
-    public Optional<Orders> findOrdersById(Integer id) {
+    public Optional<Orders> findById(Integer id) {
         return ordersDAO.findById(id);
     }
 
-    public List<Orders> findAllOrders() {
+    public List<Orders> findAll() {
         return  (List<Orders>) ordersDAO.findAll();
     }
 

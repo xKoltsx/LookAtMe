@@ -11,14 +11,19 @@ import com.example.service.OrderItemsService;
 import com.example.service.OrdersService;
 import com.example.service.ProductsService;
 import com.example.service.UserService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@CrossOrigin
 public class OrderController {
     private final OrdersConverter ordersConverter;
     private final OrdersService ordersService;
@@ -50,7 +55,7 @@ public class OrderController {
         }
 
         entity.setOrderItems(orderItemsList);
-        entity = ordersService.createOrders(entity);
+        //entity = ordersService.createOrders(entity);
         OrderResponse response = ordersConverter.entityToResponse(entity);
         return ResponseEntity.ok(response);
     }
@@ -60,4 +65,7 @@ public class OrderController {
         ordersService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+
+
 }
